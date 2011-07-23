@@ -1,13 +1,20 @@
 #include<stdio.h>
-#define HOW_MANY 10000
-int main()
+#define HOW_MANY_TIMES_TO_SAY_HELLO 3
+void say_three_hi();
+
+int main(int argc,const char *argv[])
 {
-    int i;
-    for (i = 0; i < HOW_MANY; i++)
-    {
-        printf("hello world\n");
-    }
-   
+    say_three_hi();
     return 0;
 }
 
+void say_three_hi()
+{
+    int j;
+    for (j = 0; j < HOW_MANY_TIMES_TO_SAY_HELLO; j++)
+    {
+        printf("hello world!\n");
+    }
+   
+}
+                    
