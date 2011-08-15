@@ -8,7 +8,10 @@ typedef struct student
     char name[20];
     struct student *next;
 }STU;
-
+/**********************
+函数：menu()
+功能：打印首页面
+**********************/
 void menu()
 {
     printf("\n");
@@ -21,7 +24,11 @@ void menu()
     printf("\n");
 
 }
-
+/***********************
+函数：print_node()
+功能：打印所有结点
+返回值：空
+***********************/
 void print_node(STU *p)
 {
     if (p == NULL)
@@ -32,16 +39,20 @@ void print_node(STU *p)
     while(p != NULL) 
     {
         printf("%d  %s\n", p->num, p->name);
-        p = p->next;
+        p = p->next;                                   /*移动指针 输出所有的*/
     }
 }
-
+/**********************
+函数：add_node()
+功能：添加新的结点
+返回值：head 返回头结点
+**********************/
 STU *add_node(STU *p)
 {
     STU *head = p;
     STU *new = NULL;
 
-    new = malloc(sizeof(STU));
+    new = malloc(sizeof(STU));                   /*需要添加的结点 先开辟新的空间*/
     if (new == NULL)
     {
         perror("empty");
@@ -50,9 +61,9 @@ STU *add_node(STU *p)
     printf("please add a number:\n");
     scanf("%d", &new->num);
     printf("please add the name:\n");
-    scanf("%s",new->name);               /*getchar()可接受多个字符,直到按回车才返回,但是第一个字符作为函数的返回值*/  
+    scanf("%s",new->name);               /*getchar()可接受一个字符,直到按回车才返回,但是第一个字符作为函数的返回值*/  
     getchar();                              /*读入的所有操作 只取一个字符 回车 也是个字符 故在此加*/
-    new->next = NULL;
+    new->next = NULL;                  /*新开辟的空间 一定加上本身指针的指向*/
 /*从特殊到一般的情况考虑*/                                            
     if (p == NULL)                                  
     {
@@ -74,12 +85,17 @@ STU *add_node(STU *p)
 
     return head;
 }
-
+/**********************
+函数：delete_node()
+功能：删除结点
+返回值：head 返回头结点
+***********************/
+#if 1
 STU *delete_node(STU *p)
 {
-    STU *head = p;
-    int number = 0;
-    STU *temp = NULL;
+    int number = 0;             /*从键盘上获得的参数 存入地址*/
+    STU *head = p;              /*固定 头结点*/
+    STU *temp = NULL;           /*在找到需删除的结点时  用此指针固定该结点 则可释放该结点*/
 
     if (p == NULL)
     {
@@ -89,7 +105,7 @@ STU *delete_node(STU *p)
 
     printf("please input a number to delete:\n");
     scanf("%d",&number);
- //   getchar();
+    getchar();                 /*输入的字符送入缓冲区 再从缓冲区读取  注意加getchar()*/
 
     if (p->num == number)
     {
@@ -106,19 +122,19 @@ STU *delete_node(STU *p)
     if (p->next == NULL)
     {
         printf("no match.\n");
-    }
-    else
-    {
-        temp = p->next;
-        p->next = p->next->next;
-        free(temp);
-    }
         return head;
+    }
+    temp = p->next;
+    p->next = p->next->next;
+    free(temp);
+    return head;
 }
+#endif
+
 
 void save_link(STU *p)
 {
-    FILE *fp = fopen("manage.txt", "w");
+    FILE *fp = fopen("file.txt", "w");
     if (fp == NULL)
     {
         perror("null");
