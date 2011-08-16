@@ -15,7 +15,9 @@ int main(int argc, const char *argv[])
         }
     }
 #endif
-    fb_line(0, 0, fb_v.w-1, fb_v.h-1, 0x0000ff00);
+    fb_line(0, 0, fb_v.w-1, fb_v.h-1, 0x00ff0000);
+    fb_line(fb_v.w-1, 0, 0, fb_v.h-1, 0x00ff0000);
+    fb_line(300, fb_v.h-1, 500, 0, 0x0000ff00);
     
     return 0;
 }
