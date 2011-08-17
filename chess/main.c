@@ -7,11 +7,12 @@ int main(int argc, const char *argv[])
 {
     init_data();                              
     print_board();
+    mouse_doing();
 //    save_bg(500, 300);
-    draw_cursor(500, 300);
-    sleep(1);
-    restore_bg(500, 300);
-    draw_cursor(600, 500);
+//    draw_cursor(500, 300);
+//    sleep(1);
+//    restore_bg(500, 300);
+//    draw_cursor(600, 500);
 #if 0 
     int i, j;
     for (i = 0; i < 100; i++)                       /*纵坐标*/

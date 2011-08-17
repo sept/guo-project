@@ -18,6 +18,13 @@ typedef struct
     void *memo;
 } fbscr_t;
 
+typedef struct  
+{
+    int dx;
+    int dy;
+    char button;
+} mouse_event;
+
 int init_data(void);
 int fb_one_pixel(int x, int y, u32_t color);
 int fb_line(int x1, int y1, int x2, int y2, u32_t color);
@@ -26,5 +33,5 @@ int print_board();
 int draw_cursor(int, int);
 int save_bg(int , int);
 int restore_bg(int, int);
-	
+int mouse_doing(void);	
 #endif

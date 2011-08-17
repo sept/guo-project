@@ -8,6 +8,8 @@
 #include "func.h"
 
 fbscr_t fb_v;
+ int mx;
+ int my;
 /***************************
 函数：init_data()
 功能：初始化

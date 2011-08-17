@@ -26,8 +26,6 @@ void swap(int *a, int *b)
 /********************************
 函数：fb_line()
 传入参数：起始和终点坐标 及颜色
-      dy,dx 表示出斜率
-      判断斜率正或负
 使用算法：p = 2*dy-dx
 功能：在屏幕中打印出一条斜线（斜率非1/2）
 返回值：0      
@@ -39,60 +37,58 @@ int fb_line(int x1, int y1, int x2, int y2, u32_t color)
     int inc = ((dx*dy) > 0 ? 1 : -1);                  
     int p = 0;
 
-    if(abs(dx) > abs(dy))                     /*判断dx和dy的绝对值 即斜率的正负*/
+    if(abs(dx) > abs(dy))             /*判断dx和dy的绝对值 即 随x不断增进 根据算法判断y是否递加*/
     {
-        if (dx < 0)                          
+        if (dx < 0)                   /* 确保x在x轴使用递加 即 将始末两坐标中x值小的作为起点坐标*/       
         {
         	swap(&x1, &x2);
         	swap(&y1, &y2);
-		dx = -dx;
-		dy = -dy;
+	    	dx = -dx;
+		    dy = -dy;
         }
         dy = abs(dy);
-        p = 2*dy - dx;                        /*画斜线的算法*/
+        p = 2*dy - dx;                /*画斜线的算法*/
         while (x1 <= x2)
         {
-	    fb_one_pixel(x1, y1, color);
-	    x1++;
-	    if (p < 0)
-	    {
-		p += 2*dy;
-	    }
-	    else
-	    {
-		y1 += inc;
-		p += 2*(dy - dx);
-	    }
-         }
+	        fb_one_pixel(x1, y1, color);
+	        x1++;
+	        if (p < 0)
+	        {
+	    	    p += 2*dy;
+	        }
+	        else
+	        {
+		        y1 += inc;
+		        p += 2*(dy - dx);
+	        }
+        }
     }
-    else
+    else                             /*随y不断增进 根据算法判断x是否需要递加*/
     {
         if (dy < 0)
         {
         	swap(&x1, &x2);
         	swap(&y1, &y2);
-		dx = -dx;
-		dy = -dy;
+		    dx = -dx;
+		    dy = -dy;
         }
         dx = abs(dx);
         p = 2*dx - dy;
         while (y1 <= y2)
         {
-	    fb_one_pixel(x1, y1, color);
-	    y1++;
-	    if (p < 0)
-	    {
-		p += 2*dx;
-	    }
-	    else
-	    {
-		x1 += inc;
-		p += 2*(dx - dy);
-	    }
-         }
-    
+	        fb_one_pixel(x1, y1, color);
+	        y1++;
+	        if (p < 0)
+	        {
+		        p += 2*dx;
+	        }
+	        else
+	        {
+		    x1 += inc;
+		    p += 2*(dx - dy);
+	        }
+        }
     }
-	 
     return 0;
 }
 /*************************************
@@ -110,7 +106,7 @@ int fb_circle(int x0, int y0, int r, u32_t color)
     while(x <= y)                           /* 循环条件 即 满足圆的 1/8之内 其余可按对成以此写出*/
     {
     #if 0
-    /*画出由点组成的虚圆*/
+    /*画出由密集点组成的圆圈*/
         fb_one_pixel(x0+x, y0+y, color);
         fb_one_pixel(x0+y, y0+x, color);
         fb_one_pixel(x0+x, y0-y, color);
@@ -121,7 +117,7 @@ int fb_circle(int x0, int y0, int r, u32_t color)
         fb_one_pixel(x0-y, y0-x, color);
         fb_one_pixel(x0-x, y0-y, color);
     #endif
-     /*画出由线组成的实心圆*/   
+     /*画出由线组成的实心圆圈*/   
         fb_line(x0+x, y0+y, x0-x, y0+y,color);
         fb_line(x0+y, y0+x, x0-y, y0+x,color);
         fb_line(x0+x, y0-y, x0-x, y0-y,color);
