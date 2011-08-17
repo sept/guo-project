@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <unistd.h>
 #include "func.h"
 #include "various.h"
 
@@ -6,6 +7,11 @@ int main(int argc, const char *argv[])
 {
     init_data();                              
     print_board();
+//    save_bg(500, 300);
+    draw_cursor(500, 300);
+    sleep(1);
+    restore_bg(500, 300);
+    draw_cursor(600, 500);
 #if 0 
     int i, j;
     for (i = 0; i < 100; i++)                       /*纵坐标*/
@@ -30,6 +36,11 @@ int main(int argc, const char *argv[])
     {
         fb_line(0, 0+i*30, fb_v.w-1, 0+i*30, 0x00ffffff);
     }
+
+    printf("location:\n");
+    scanf("%d",&i);
+
+    fb_circle(st_x+i*space, st_y+i*space, 10, 0x0000ff00);
 #endif
     return 0;
 }
