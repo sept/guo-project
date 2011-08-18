@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "various.h"
 #include "func.h"
-#define BORD 0x0000fff0
+#define BORD 0x00f0f000
 #define T___ 0x00000000
 #define X___ 0x00ffffff
 #define c_w  10
