@@ -34,4 +34,5 @@ int draw_cursor(int, int);
 int save_bg(int , int);
 int restore_bg(int, int);
 int mouse_doing(void);	
+int chess_doing();
 #endif

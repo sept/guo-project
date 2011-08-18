@@ -155,7 +155,7 @@ int mouse_doing(void)
                 case 0 : if (press_do == 1)
                 {
                     press_do = 0;
-                    fb_circle(mx,my,10, 0x00ff0000);
+                    chess_doing();
                 }
                 break;
                 case 1 :press_do = 1;break;
