@@ -1,6 +1,11 @@
 #include<stdio.h>
 #include "func.h"
 #include "various.h"
+int chess_put(int x, int y)
+{
+    chess_board[x+y*x_num] = 1;
+    return 0;
+}
 /*************************************************
 函数：chess_doing()
 功能：在棋盘图形内确定光标的位置在空格内最近的交点
@@ -36,6 +41,17 @@ int chess_doing()
         cy += space;
     }
 
-    fb_circle(cx, cy, 10, 0x00ff0000);            /*画圆*/
+    fb_circle(cx, cy, 10, current_color);            /*画圆*/
+    chess_put((cx-st_x)/space, (cy-st_y)/space);
+    if (current_color == WHITE)
+    {
+        current_color = BLACK;
+        player = 1;
+    }
+    else
+    {
+        current_color = WHITE;
+        player = 2;
+    }
     return 0;
 }

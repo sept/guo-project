@@ -10,6 +10,10 @@
 fbscr_t fb_v;
  int mx;
  int my;
+
+ char chess_board[x_num*y_num];
+ char player;
+ u32_t current_color;
 /***************************
 函数：init_data()
 功能：初始化
@@ -38,14 +42,17 @@ int init_data()
     fb_v.bpp = fb_var.bits_per_pixel;
 
     fb_v.memo = mmap(NULL, fb_v.w*fb_v.h*fb_v.bpp/8, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
-
+    
     if (fb_v.memo == MAP_FAILED)            /*映射*/
     {
     	perror("map");
 	    exit(0);
     }
     memset(fb_v.memo, 0, fb_v.w*fb_v.h*fb_v.bpp/8);       /*清屏*/
+    memset(chess_board, 0, x_num*y_num);
 
+    current_color = BLACK;
+    player = 1;
    /* int i ;
     u32_t *p = fb_v.memo;
     for (i = 0; i < fb_v.w; i++)

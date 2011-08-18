@@ -7,6 +7,8 @@
 #define y_num 24
 #define space 30
 
+#define BLACK 0x00ff0000 
+#define WHITE 0x00000ff
 typedef unsigned char u8_t;
 typedef unsigned int u32_t;
 

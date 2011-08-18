@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "various.h"
 #include "func.h"
-#define BORD 0x00f0f000
+#define BORD 0x0000f0f0
 #define T___ 0x00000000
 #define X___ 0x00ffffff
 #define c_w  10
@@ -136,7 +136,7 @@ int mouse_doing(void)
             restore_bg(mx, my);
             mx += m_e.dx;
             my += m_e.dy;
-        /*设置 光标移动的范围*/
+        /*设置 光标移动的范围 不能超过屏幕的边框*/
             if (mx < 0)
             {
                 mx = 0;
@@ -144,6 +144,10 @@ int mouse_doing(void)
             if (mx > (fb_v.w-c_w))
             {
                 mx = (fb_v.w-c_w);
+            }
+            if (my < 0)
+            {
+                my = 0;
             }
             if (my > (fb_v.h - c_h))
             {
