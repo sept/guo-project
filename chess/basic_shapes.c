@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "various.h"
 #include "func.h"
+
 /**************************
 函数：fb_one_pixel()
 功能：在屏幕中打印出一亮点
@@ -12,6 +13,7 @@ int fb_one_pixel(int x, int y, u32_t color)
     *((u32_t *)fb_v.memo + x + y * fb_v.w) = color;   /* 泛指针 强制类型转化 */
     return 0;
 }
+
 /********************************
 函数：swap()
 功能：将指针a和b所指向的内容互换
@@ -23,6 +25,7 @@ void swap(int *a, int *b)
     *a = *b;
     *b = temp;
 }
+
 /********************************
 函数：fb_line()
 传入参数：起始和终点坐标 及颜色
@@ -91,6 +94,7 @@ int fb_line(int x1, int y1, int x2, int y2, u32_t color)
     }
     return 0;
 }
+
 /*************************************
 函数：fb_circle()
 功能：在屏幕上画出一个实心圆
