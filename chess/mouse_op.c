@@ -114,29 +114,57 @@ int get_mouse_info(int fd, mouse_event *p)
 int mouse_doing(void)
 {
 	int fd = 0;
+    int press_do = 0;              /*设置鼠标点下后 弹起的瞬间*/
 	mouse_event m_e;
 
-	fd = open("/dev/input/mice", O_RDWR|O_NONBLOCK);
-	if(fd == -1)
+	fd = open("/dev/input/mice", O_RDWR|O_NONBLOCK);      /*打开方式 可读可写 或 非阻塞*/ 
+	if(fd == -1)          
 	{
-		perror("mice");
-		exit(0);
+	    perror("mice");
+	    exit(0);
 	}
 
-	mx = fb_v.w/2;
-	my = fb_v.h/2;
+    mx = fb_v.w/2;
+    my = fb_v.h/2;
 
-	draw_cursor(mx, my);
+    draw_cursor(mx, my);
 
 	while(1)
 	{
-		if(get_mouse_info(fd, &m_e) > 0)
+		if(get_mouse_info(fd, &m_e) > 0)        /*判断鼠标是否移动*/
 		{
-			restore_bg(mx, my);
-			mx += m_e.dx;
-			my += m_e.dy;
-			draw_cursor(mx, my);
+            restore_bg(mx, my);
+            mx += m_e.dx;
+            my += m_e.dy;
+        /*设置 光标移动的范围*/
+            if (mx < 0)
+            {
+                mx = 0;
+            }
+            if (mx > (fb_v.w-c_w))
+            {
+                mx = (fb_v.w-c_w);
+            }
+            if (my > (fb_v.h - c_h))
+            {
+                my = (fb_v.h - c_h);
+            }
+         /*选择鼠标输入的操作按键*/
+            switch(m_e.button)
+            {
+                case 0 : if (press_do == 1)
+                {
+                    press_do = 0;
+                    fb_circle(mx,my,10, 0x00ff0000);
+                }
+                break;
+                case 1 :press_do = 1;break;
+                case 2 : break;
+                case 4 : break;
+                default : break;
+            }
+            draw_cursor(mx, my);
 		}
     }
-	return 0;
+    return 0;
 }
