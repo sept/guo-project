@@ -24,7 +24,7 @@ typedef struct
     int dy;
     char button;
 } mouse_event;
-
+/*声明*/
 int init_data(void);
 int fb_one_pixel(int x, int y, u32_t color);
 int fb_line(int x1, int y1, int x2, int y2, u32_t color);
