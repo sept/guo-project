@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "func.h"
+
 /*************************************
 函数：print_board()
 功能：打印出五子棋棋盘形式的线
