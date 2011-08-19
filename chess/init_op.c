@@ -48,21 +48,21 @@ int init_data()
     	perror("map");
 	    exit(0);
     }
-    memset(fb_v.memo, 0, fb_v.w*fb_v.h*fb_v.bpp/8);       /*清屏*/
-    memset(chess_board, 0, x_num*y_num);
+    memset(fb_v.memo, 0, fb_v.w*fb_v.h*fb_v.bpp/8);       /*清屏  屏幕*/
+    memset(chess_board, 0, x_num*y_num);                  /*棋盘图形的界面 清屏*/
 
-    current_color = BLACK;
+    current_color = BLACK;                              /*设定首先落子颜色 为黑色 代表 player 1*/
     player = 1;
-   /* int i ;
+ /*   int i ;
     u32_t *p = fb_v.memo;
-    for (i = 0; i < fb_v.w; i++)
+    for (i = 0; i < fb_v.w-1; i++)
     {
         p[i] = 0x0000ff00;
     }
   
-    for (i = 0; i < fb_v.h; i++)
+    for (i = 0; i < fb_v.h-1; i++)
     {
     	p[i*fb_v.w] = 0x00ff0000;
-    }*/
-  return 0;
+    }
+*/  return 0;
 }
