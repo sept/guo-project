@@ -55,7 +55,7 @@ extern int display_rand(char *filename, fb_info fb_inf);
 extern int display_rand_line(char *filename, fb_info fb_inf);
 extern int display_dia_line(char *filename, fb_info fb_inf);
 extern int display_four(char *filename, fb_info fb_inf);
-
+extern int back_main(u8_t *, u8_t *, u32_t *, fb_info);
 
 /* ******************** font.c ******************** */
 extern int init_ft (const char *file, int size);
@@ -71,9 +71,13 @@ extern int create_jpeg(const char *filejpeg, const char *newfile, fb_info fb_inf
 /* use middle data file to display */
 extern int basic_disp(const char * filename, fb_info fb_inf);
 
-/* ******************** my_work.c ******************** */
-
 
 /* ******************** menu.c ******************** */
-extern void menu(void);
+extern void menu(fb_info);
+
+/***********************main.c****************************/
+void sig(int);
+extern int dis_flag;
+extern int restar_flag;
+extern int start;
 #endif
