@@ -25,11 +25,11 @@ int print_board()
 /*打印棋盘图形*/
     for (i = 0; i < y_num ; i++)            /*打印出横线*/
     {
-        fb_line(st_x, st_y+i*space, st_x+space*(x_num-1), st_y+i*space, 0x00);
+        fb_line(st_x, st_y+i*space, st_x+space*(x_num-1), st_y+i*space, 0xffffff);
     }
     for (i = 0; i < x_num; i++)             /*打印出纵线*/
     {
-        fb_line(st_x+i*space, st_y, st_x+i*space, st_y+space*(y_num - 1), 0x00);
+        fb_line(st_x+i*space, st_y, st_x+i*space, st_y+space*(y_num - 1), 0xffffff);
     }
     return 0;
 }

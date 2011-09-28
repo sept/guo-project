@@ -31,7 +31,7 @@ int main(int argc, const char *argv[])
 //    fb_line(fb_v.w-1, fb_v.h-1, fb_v.w-1, 0, 0x00ffffff);
 //    fb_line(fb_v.w-1, fb_v.h-1, 0, fb_v.h-1, 0x00ffffff);
 //      fb_circle(500, 300, 300, 0x00ff0000);
-#if 0
+#if 1
     int i;
     for (i = 0; i < fb_v.w; i++)
     {
