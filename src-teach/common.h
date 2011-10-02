@@ -4,6 +4,13 @@
 typedef unsigned char u8_t;
 typedef unsigned short u16_t;
 typedef unsigned int u32_t;
+/*定义一个双向链表存放图片所在文件夹*/
+typedef struct dir
+{
+    char name[100][100];
+    struct dir *pre;
+    struct dir *next;
+}rd_dir;
 
 typedef struct 
 {
@@ -91,4 +98,7 @@ extern void display(fb_info);
 extern int syn_mouse_disp(fb_info);
 extern void sig_handler(int);
 
+
+/***********************readdir.c*********************/
+extern int read_photo(void);
 #endif

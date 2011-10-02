@@ -121,7 +121,6 @@ int syn_mouse_disp(fb_info fb_inf)
                 restar_flag = 0;
                 continue;
             }
-
             display(fb_inf);
         }
     }
@@ -150,8 +149,8 @@ void sig_handler(int signo)
 {
     if (signo == SIGUSR2)
     {    
-	dis_flag++;
-	start = 1;
+        dis_flag++;
+        start = 1;
     }
    
     if (signo == SIGUSR1)
