@@ -1,8 +1,8 @@
 /********************************************************************
-  文    件:    display-jpep.c
-  功    能:    显示图片特效
-  函数列表:
-  日    期:
+文    件:    display-jpep.c
+功    能:    显示图片特效
+函数列表:
+日    期:
  *********************************************************************/
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,9 +14,9 @@
 #include "common.h"
 
 /********************************************************************
-  函    数:        display_four
-  功    能:        实现中间两根线分别拉伸则出现四块
-  传入参数:        filename : 要显示的图片的名字
+函    数:        display_four
+功    能:        实现中间两根线分别拉伸则出现四块
+传入参数:        filename : 要显示的图片的名字
 fb_info  :       图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
@@ -52,9 +52,9 @@ int display_four(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_line
-  功    能:        按线显示图片    
-  传入参数:        filename : 要显示的图片的名字
+函    数:        display_line
+功    能:        按线显示图片    
+传入参数:        filename : 要显示的图片的名字
 fb_info :        图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
@@ -97,10 +97,10 @@ int display_line(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_circle
-  功    能:        按圆显示图片    
-  传入参数:        filename : 要显示的图片的名字
-fb_info  : 图片显示的缓存区
+函    数:        display_circle
+功    能:        按圆显示图片    
+传入参数:        filename : 要显示的图片的名字
+fb_info  :       图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
 修改记录:
@@ -150,21 +150,21 @@ int display_circle(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:       display_scale
-  功    能:       图片的缩放    
-  传入参数:       filename : 要显示的图片的名字
-jpeg_w   : 图片的长
-jpeg_h   : 图片的宽
-jpeg_x   : 图片所在的坐标 
+函    数:       display_scale
+功    能:       图片的缩放    
+传入参数:       filename : 要显示的图片的名字
+jpeg_w   :      图片的长
+jpeg_h   :      图片的宽
+jpeg_x   :      图片所在的坐标 
 jpeg_y   : 
-fb_info  : 图片显示的缓存区
+fb_info  :      图片显示的缓存区
 传出参数:       fb_info  : 图片显示的信息
 返    回:
 修改记录:
  ********************************************************************/
 int display_scale(char *filename,int jpeg_w,int jpeg_h,int jpeg_x,int jpeg_y,fb_info fb_inf)
 {
-    if(jpeg_w >= fb_inf.w || jpeg_h >= fb_inf.h||jpeg_w < 0|| jpeg_h < 0)
+    if(jpeg_w >= fb_inf.w || jpeg_h >= fb_inf.h || jpeg_w < 0 || jpeg_h < 0)
     {
         fprintf(stderr, "the jpeg_w or jpeg_h is error!\n");
         return -1;
@@ -241,10 +241,10 @@ int display_scale_pull(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_jpeg
-  功    能:        显示图片    
-  传入参数:        filename : 要显示的图片的名字
-fb_info  : 图片显示的缓存区
+函    数:        display_jpeg
+功    能:        显示图片    
+传入参数:        filename : 要显示的图片的名字
+fb_info  :       图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
 修改记录:
@@ -261,7 +261,7 @@ int display_jpeg(char *filename, fb_info fb_inf)
     int j = 0;
     for (i = fb_inf.h-1; i > 0 ; i--)
     {
-        for (j = 0; j < fb_inf.w ; j++)
+        for (j = 0; j < fb_inf.w-1 ; j++)
         {
             if (back_main(buf24, scale_buf, buf32, fb_inf) == 1)
             {
@@ -280,10 +280,10 @@ int display_jpeg(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_circle
-  功    能:        按圆显示    
-  传入参数:        filename : 要显示的图片的名字
-fb_info  : 图片显示的缓存区
+函    数:        display_circle
+功    能:        按圆显示    
+传入参数:        filename : 要显示的图片的名字
+fb_info  :       图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
 修改记录:
@@ -316,10 +316,10 @@ int display_menu(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_rand
-  功    能:        随机出现点    
-  传入参数:        filename : 要显示的图片的名字
-fb_info  : 图片显示的缓存区
+函    数:        display_rand
+功    能:        随机出现点    
+传入参数:        filename : 要显示的图片的名字
+fb_info :        图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
 修改记录:
@@ -357,10 +357,10 @@ int display_rand(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        display_rand_line
-  功    能:        随机按线显示图片    
-  传入参数:        filename : 要显示的图片的名字
-fb_info  : 图片显示的缓存区
+函    数:        display_rand_line
+功    能:        随机按线显示图片    
+传入参数:        filename : 要显示的图片的名字
+fb_info :        图片显示的缓存区
 传出参数:        fb_info  : 图片显示的信息
 返    回:
 修改记录:
@@ -375,24 +375,25 @@ int display_rand_line(char *filename, fb_info fb_inf)
 
     int j = 0;
     int i = 0;
-
-    int m = fb_inf.w * 9;
+    int x,y;
+    int m = fb_inf.w * 5;
 
     while (m--)
     {
             i = rand() % fb_inf.w;
-            for (j = 0; j < rand()%fb_inf.h+fb_inf.h/2; j++)
+            y = rand() % fb_inf.w;
+            for (j = 0, x = fb_inf.h/2; j < rand()%fb_inf.h+fb_inf.h/2 || x < rand()%fb_inf.h+fb_inf.h/2; j++, x++)
             {
                 if (j >= fb_inf.h) j = fb_inf.h;
+                if (x >= fb_inf.h) x = fb_inf.h;
                 if (back_main(buf24, scale_buf, buf32, fb_inf) == 1)
                 {
                     return 0;
                 }
 
                 fb_pixel(fb_inf, i, j, buf32[i + j * fb_inf.w]);
-                usleep(10);
+                fb_pixel(fb_inf, y, x, buf32[y + x * fb_inf.w]);
             }
-            usleep(100);
     }
 
     free(buf24);
@@ -403,9 +404,9 @@ int display_rand_line(char *filename, fb_info fb_inf)
 }
 
 /********************************************************************
-  函    数:        back_main
-  功    能:        检测鼠标动作    
-  传入参数:        buf24     : 
+函    数:        back_main
+功    能:        检测鼠标动作    
+传入参数:        buf24     : 
 scale_buf : 
 buf32     :  
 传出参数:        fb_info   : 图片信息

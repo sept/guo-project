@@ -16,6 +16,7 @@
 int dis_flag = 0;             /*显示的标志*/
 int restar_flag = 0;          /*重启的标志*/
 int start = 0;                /*第一次开始的标志*/
+int pre_flag = 0;             /*开始预览的标志*/
 
 /********************************************************************
 函    数:        init_restar
@@ -30,6 +31,7 @@ void init_restar()
      dis_flag = 0;
      restar_flag = 0;
      start = 0;
+     pre_flag = 0;
 }
 
 /********************************************************************
@@ -67,7 +69,7 @@ void display(fb_info fb_inf)
         return;
     }
 	        
-    display_rand_line("5.jpg", fb_inf);
+/*    display_rand_line("5.jpg", fb_inf);
 
     if (restar_flag == 1)
     {
@@ -82,7 +84,7 @@ void display(fb_info fb_inf)
 	init_restar();
 	return;
     }
-		
+*/		
     sleep(1);
 }
 
@@ -93,7 +95,7 @@ void display(fb_info fb_inf)
 传出参数:        无
 返    回:        无
 特殊说明:	
-********************************************************************/
+*******************************************************************/
 int syn_mouse_disp(fb_info fb_inf) 
 {
     pid_t pid;
@@ -107,6 +109,7 @@ int syn_mouse_disp(fb_info fb_inf)
 
     sigaction(SIGUSR1, &sig_set, NULL);
     sigaction(SIGUSR2, &sig_set, NULL);
+    sigaction(SIGALRM, &sig_set, NULL);
     
     menu(fb_inf);
    
@@ -114,15 +117,29 @@ int syn_mouse_disp(fb_info fb_inf)
     if (pid > 0)
     {       
         while (1)
-        {   
-            if (start == 0)
-            {   
-                dis_flag = 0;
-                restar_flag = 0;
-                continue;
+        {
+            while (1)
+            {
+                if (start == 1)
+                    break;
+                if (pre_flag == 0)
+                    continue;
+
+                previewpicture(fb_inf);
             }
-            display(fb_inf);
-        }
+            while (1)
+            {   
+                if (pre_flag == 1)
+                    break;
+                if (start == 0)
+                {   
+                    dis_flag = 0;
+                    restar_flag = 0;
+                    continue;
+                }
+                display(fb_inf);
+            }
+       } 
     }
     else if (pid == 0)
     {
@@ -147,7 +164,7 @@ int syn_mouse_disp(fb_info fb_inf)
 ********************************************************************/
 void sig_handler(int signo)
 {
-    if (signo == SIGUSR2)
+    if (signo == SIGALRM)
     {    
         dis_flag++;
         start = 1;
@@ -156,5 +173,10 @@ void sig_handler(int signo)
     if (signo == SIGUSR1)
     { 
         restar_flag = 1;
+    }
+
+    if (signo == SIGUSR2) 
+    {
+        pre_flag = 1;
     }
 }    

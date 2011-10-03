@@ -10,8 +10,7 @@ int main(int argc, const char *argv[])
     if (init_fb(&fb_inf) < 0)
     {
         fprintf(stderr, "ERRor initial framebuf\n");
-        
-	return 1;
+    	return 1;
     }
 
     syn_mouse_disp(fb_inf);

@@ -247,13 +247,13 @@ void mouse_but(int m_x, int m_y, int *mouse, fb_info fb_inf)
     /*点击鼠标左键 并 点主界面的 播放区域 */
     if ((*mouse == 1) && (m_x >= fb_inf.w/8) && (m_x <= fb_inf.w/8+2*(psize-2)) && (m_y >= fb_inf.h/5-psize*3/4) && (m_y <= fb_inf.h/5+psize/4))
     {   
-        kill(getppid(), SIGUSR2);
+        kill(getppid(), SIGALRM);
     }   
 
     /*点击鼠标左键 并 点主界面的 预览 区域*/
     if ((*mouse == 1) && (m_x >= fb_inf.w/8) && (m_x <= fb_inf.w/8+2*(psize-2)) && (m_y >= fb_inf.h*2/5-psize*3/4) && (m_y <= fb_inf.h*2/5+psize/4))
     {
-        kill(getppid(), SIGALRM); 
+        kill(getppid(), SIGUSR2); 
     }
 
     /*点击鼠标左键 并 点主界面的 音乐 区域*/

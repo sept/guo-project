@@ -74,7 +74,7 @@ int fb_pixel(fb_info fb_inf, int x, int y, u32_t color)
 
 	switch (fb_inf.bpp)
 	{
-                case 32:				  /* 32 bits */
+        case 32:				  /* 32 bits */
 			*(pos + 3) = color >> 24;
 		case 24:				  /* 24 bits */
 			*(pos + 2) = color >> 16;
