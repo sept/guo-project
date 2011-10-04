@@ -88,13 +88,14 @@ extern int basic_disp(const char * filename, fb_info fb_inf);
 /* ******************** menu.c ******************** */
 extern void menu(fb_info);
 
-/* ******************** 0929netig.c ******************** */
-extern int previewpicture(fb_info fb_inf);
+/* ******************** preview.c ******************** */
+extern int previewpicture(fb_info);
 
 /***********************my_work.c*********************/
 extern int dis_flag;
 extern int restar_flag;
 extern int start;
+extern int pre_flag;
 extern void init_restar();
 extern void display(fb_info);
 extern int syn_mouse_disp(fb_info);

@@ -220,22 +220,22 @@ int display_scale_pull(char *filename, fb_info fb_inf)
     int i = 0;
     int j = 0;
 
-        for (j = 0; j < fb_inf.h-1; j++)
+    for (j = 0; j < fb_inf.h-1; j++)
+    {
+        if (j >= fb_inf.h/2) 
         {
-            if (j >= fb_inf.h/2) 
-            {
-               j = fb_inf.h/2;
-               return 1;
-            }
-
-            display_scale(filename, fb_inf.w/2, fb_inf.h/2, i, j, fb_inf); 
-
-            if (restar_flag == 1)
-            {   
-                init_restar();
-                return 1;
-            }
+           j = fb_inf.h/2;
+           return 1;
         }
+
+        display_scale(filename, fb_inf.w/2, fb_inf.h/2, i, j, fb_inf); 
+
+        if (restar_flag == 1)
+        {   
+            init_restar();
+            return 1;
+        }
+    }
 
     return 0;
 }

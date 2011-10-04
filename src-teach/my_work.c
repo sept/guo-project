@@ -51,7 +51,6 @@ void display(fb_info fb_inf)
         init_restar();
         return;
     }
-
          
     display_rand("3.jpg", fb_inf);
 		
@@ -132,11 +131,8 @@ int syn_mouse_disp(fb_info fb_inf)
                 if (pre_flag == 1)
                     break;
                 if (start == 0)
-                {   
-                    dis_flag = 0;
-                    restar_flag = 0;
                     continue;
-                }
+
                 display(fb_inf);
             }
        } 

@@ -76,7 +76,7 @@ int test_mouse(fb_info fb_inf)
 
             m_x += mevent.x;
             m_y += mevent.y;
-
+printf("%d %d\n", m_x, m_y);
             judge_mouse(&m_x, &m_y, fb_inf);
 
             switch (mevent.button)
@@ -254,6 +254,18 @@ void mouse_but(int m_x, int m_y, int *mouse, fb_info fb_inf)
     if ((*mouse == 1) && (m_x >= fb_inf.w/8) && (m_x <= fb_inf.w/8+2*(psize-2)) && (m_y >= fb_inf.h*2/5-psize*3/4) && (m_y <= fb_inf.h*2/5+psize/4))
     {
         kill(getppid(), SIGUSR2); 
+    }
+
+    /*预览中的 上一页 */
+    if ((*mouse == 1) && (m_x >= fb_inf.w/2) && (m_x <= fb_inf.w/2+3*(psize-2)) && (m_y >= fb_inf.h*98/100-psize*3/4) && (m_y <= fb_inf.h*98/100+psize/4))
+    {
+        kill(getppid(), SIGABRT);
+    }
+
+    /*预览中的 下一页*/
+    if ((*mouse == 1) && (m_x >= fb_inf.w*3/4) && (m_x <= fb_inf.w*3/4+3*(psize-2)) && (m_y >= fb_inf.h*98/100-psize*3/4) && (m_y <= fb_inf.h*98/100+psize/4))
+    {
+        kill(getppid(), SIGCONT);    
     }
 
     /*点击鼠标左键 并 点主界面的 音乐 区域*/
